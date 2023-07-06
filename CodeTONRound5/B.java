@@ -8,8 +8,6 @@ import java.util.*;
 
 public class B {
 
-
-
     public static void main(String[] args) throws IOException {
         FastScanner fs=new FastScanner();
         PrintWriter out=new PrintWriter(System.out);
