@@ -49,7 +49,6 @@ public class B {
         while(left <= right){
 
             if(arr[left] != arr[right]) return false;
-
             left++;
             right--;
         }
