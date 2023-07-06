@@ -41,10 +41,6 @@ public class B {
         out.close();
     }
 
-
-
-
-
     public static boolean isPalindorme(int arr[]){
 
         int left = 0;
