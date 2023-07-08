@@ -8,12 +8,12 @@ import java.util.*;
 
 public class C {
 
-
+//Code Accepted during contest but failed after that
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
         PrintWriter out=new PrintWriter(System.out);
-//        Scanner sc = new Scanner(System.in);
+
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
             int n = fs.nextInt();

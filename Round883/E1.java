@@ -12,7 +12,6 @@ public class E1 {
         FastScanner fs=new FastScanner();
         PrintWriter out=new PrintWriter(System.out);
         final long resVal = 1;
-//        Scanner sc = new Scanner(System.in);
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
 
