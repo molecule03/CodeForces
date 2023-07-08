@@ -8,7 +8,7 @@ import java.util.*;
 
 public class C {
 
-//Code Accepted during contest but failed after that
+//Corrected code for done in upsolving (not taken long )
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
@@ -16,62 +16,66 @@ public class C {
 
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
+
             int n = fs.nextInt();
             int m = fs.nextInt();
             int h = fs.nextInt();
-            int finalCount = 0;
-            List<Pair<Integer, Integer>> resList = new ArrayList<>();
-            int sum = 0;
-            int selCols = 0;
-            for (int i = 0; i < n; i++) {
-                List<Integer> vals = new ArrayList<>();
-                for (int j = 0; j < m; j++) {
-                    int x = fs.nextInt();
-                    vals.add(x);
-                }
-                Collections.sort(vals);
 
-                int ans = 0;
-                int selRows = 0;
-                int idx = 0;
-                for (idx = 0; idx < m; idx++) {
-                    selRows += vals.get(idx);
-                    ans += selRows;
-                    if (selRows > h) break;
+            List<long[]> ai = new ArrayList<>();
+            for(int i=0; i<n; i++){
+                long a[] = new long[m];
+                long last = 0;
+                for(int j=0; j<m; j++){
+                    a[j]= fs.nextInt();
                 }
-                if (idx == m) idx--;
-                if (selRows > h) {
-                    idx--;
-                    ans -= selRows;
+                sort(a);
+                for(int j=0; j<m; j++){
+                    a[j]+= last;
+                    last = a[j];
                 }
-                if (i == 0) {
-                    sum = idx;
-                    selCols = ans;
-                }
-                resList.add(new Pair<>(idx, ans));
-            }
-            Collections.sort(resList, (a, b) -> sortbyCond(a, b) ? 1 : -1);
-
-            for (Pair<Integer, Integer> p : resList) {
-                finalCount++;
-                if (p.getKey().equals(sum) && p.getValue().equals(selCols)) {
-                    break;
-                }
+                ai.add(a);
             }
 
-            out.println(finalCount);
+
+            List<long[]> res = new ArrayList<>();
+            for(long a[] : ai){
+                int count = 0;
+                long t = 0;
+
+                for(long i : a){
+                    if(i > h){
+                        break;
+                    }
+                    count++;
+                    t += i;
+                }
+                res.add(new long[]{count, t});
+            }
+
+            long pCount = res.get(0)[0];
+            long pExtra = res.get(0)[1];
+
+            int rank = 1;
+            for(long r[] : res){
+                if(r[0] > pCount){
+                    rank++;
+                }
+                else if(r[0] == pCount && r[1]<pExtra){
+                    rank++;
+                }
+            }
+
+            out.println(rank);
+
+
+//            for(int i[] : ai) {
+//                out.println(Arrays.toString(i));
+//            }
+//            out.println("");
         }
 
         out.close();
     }
-
-    static boolean sortbyCond(Pair<Integer, Integer> a, Pair<Integer, Integer> b) {
-        if (!a.getKey().equals(b.getKey()))
-            return a.getKey() < b.getKey();
-        else
-            return a.getValue() > b.getValue();
-    }
-
 
 
 
@@ -181,8 +185,8 @@ public class C {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n-k]));
     }
     static void print(int[] arr){
-        PrintWriter out=new PrintWriter(System.out);
-        out.print(Arrays.toString(arr)+" ");
+//        PrintWriter out=new PrintWriter(System.out);
+        System.out.print(Arrays.toString(arr)+" ");
     }
     static void print(long[] arr){
         PrintWriter out=new PrintWriter(System.out);
