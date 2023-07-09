@@ -9,40 +9,37 @@ import java.util.*;
 public class D {
 
 
+//    Corrected Code in Upsolve
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
         PrintWriter out=new PrintWriter(System.out);
-//        Scanner sc = new Scanner(System.in);
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
 
-            long n = fs.nextLong();
-            long length = fs.nextLong();
-            long height = fs.nextLong();
-            long[] array = new long[(int)n];
-            for(int i=0; i<n; i++) {
-                array[i] = fs.nextLong();
+            double n = fs.nextInt();
+            double d = fs.nextInt();
+            double h = fs.nextInt();
+
+            double heights[] = new double[(int)n];
+            for(int i=0; i<n; i++)heights[i] = fs.nextLong();
+
+            double area = (d* h)/2.0;
+            double totalArea = area*n;
+            double prevHeight = h+heights[0];
+
+            for(int i=1; i<n; i++){
+                if(heights[i] < prevHeight){
+                    double curHeight =  h-((h+heights[i])-prevHeight);
+                    double curBase = (d/h)*curHeight;
+
+                    double curArea = (curBase*curHeight)/2.0;
+                    totalArea -= curArea;
+                }
+                prevHeight = h+heights[i];
             }
 
-            sort(array);
-
-            long count = 0;
-            List<Long> differences = new ArrayList<>();
-            int i =0;
-            while (i < n){
-                if(count > array[i]) differences.add(count - array[i]);
-                count = array[i] + height;
-                i++;
-            }
-            double totalArea = (length * height * n)/2.0;
-            double subtractArea = 0;
-            for(long diff : differences) subtractArea += (diff*diff);
-
-            subtractArea = ((subtractArea*length)/height)/2.0;
-            totalArea -= subtractArea;
-
-            out.printf("%.10f\n", totalArea);
+            out.println(totalArea);
 
         }
 
