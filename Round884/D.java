@@ -9,6 +9,7 @@ import java.util.*;
 public class D {
 
 
+    // Upsolved after contest
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
@@ -16,45 +17,35 @@ public class D {
 
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
+            int n = fs.nextInt();
 
-            int inputNumber = fs.nextInt();
-            StringBuilder resultString = new StringBuilder();
-
-            for (int i = 0; i < inputNumber; i++) {
-                char c = (char) ((i % 26) + 'a');
-                resultString.append(c);
+            if(n ==1){
+                out.println("a");
+                continue;
             }
-            resultString.append("\n");
-            out.print(resultString);
-//            int n = fs.nextInt();
-//            int[][] mat = new int[n][26];
-//            int[] chars = new int[n];
-//
-//            Set<Integer> set = printDivisors(n);
-//            for (int i = 0; i < n; i++) {
-//                for (int s : set) {
-//                    if (i + s >= n) break;
-//                    mat[i + s][chars[i]] = 1;
-//                }
-//                if (i + 1 < n) {
-//                    int[] arr = mat[i+1];
-//                    boolean flag = false;
-//                    for (int j = 0; j < arr.length; j++) {
-//                        if (arr[j] == 0) {
-//                            chars[i+1] = j;
-//                            flag = true;
-//                            break;
-//                        }
-//                    }
-//                    if(!flag) chars[i+1] = -1;
-//                }
-//            }
-//
-//            for (int c : chars) {
-//                char val = (char) (c + 'a');
-//                out.print(val);
-//            }
-//            out.println("");
+            if(n==2){
+                out.println("ab");
+                continue;
+            }
+
+            int len =0;
+            for(int i=1; i<n; i++){
+                if(n%i != 0){
+                    len = i;
+                    break;
+                }
+            }
+
+
+            int cur = 0;
+            for(int i=0; i<n; i++){
+                if(cur >= len){
+                    cur = 0;
+                }
+                out.print((char)('a'+(char)cur));
+                cur++;
+            }
+            out.println("");
         }
 
         out.close();
