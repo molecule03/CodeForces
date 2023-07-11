@@ -8,7 +8,7 @@ import java.util.*;
 
 public class C {
 
-
+//Upsolved after contest
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
@@ -16,40 +16,37 @@ public class C {
 
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
+
             int n = fs.nextInt();
+            long arr[] = new long[n];
+            for(int i=0; i<n; i++)arr[i] = fs.nextLong();
 
-            ArrayList<Long> charges = new ArrayList<>();
-
-
-            for (int i = 0; i < n; i++) {
-                long val = fs.nextLong();
-                charges.add(val);
-            }
-
-            long curMax = Long.MIN_VALUE;
-            for(long c : charges){
-                curMax = Math.max(curMax, c);
-            }
-
-            if (curMax <= 0) {
-                out.println(curMax);
+            if(n == 1){
+                out.println(arr[0]);
                 continue;
             }
-            long finMax = curMax;
 
-            long curSum = 0;
-            for (int i = 0; i < n; i += 2) {
-                if (charges.get(i) >= 0)  curSum += charges.get(i);
+            long max = Integer.MIN_VALUE;
+            for(long a : arr){
+                max = Math.max(a,max);
             }
-            finMax = Math.max(finMax, curSum);
-
-
-            curSum = 0;
-            for (int i = 1; i < n; i += 2) {
-                if (charges.get(i) >= 0) curSum += charges.get(i);
+            if(max<=0) {
+                out.println(max);
+                continue;
+            }
+            long odd = 0l;
+            long even = 0l;
+            for(int i=0; i<n; i++){
+                if(arr[i] <= 0) continue;
+                if(i%2 == 0){
+                    even += arr[i];
+                }
+                else{
+                    odd += arr[i];
+                }
             }
 
-            out.println(Math.max(finMax, curSum));
+            out.println(Math.max(even,odd));
         }
 
         out.close();
