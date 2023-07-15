@@ -28,15 +28,6 @@ public class B {
             int count = 4;
             for(int i=1; i<n-1; i++){
                 if(i == n/2) continue;
-//                if(i==n/2){
-//                    arr[i] = 1;
-//                }
-//                else if(i == 0){
-//                    arr[i] = 2;
-//                }
-//                else if(i == n-1){
-//                    arr[i] = 3;
-//                }
                 arr[i] = count++;
             }
 
