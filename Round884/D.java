@@ -36,7 +36,6 @@ public class D {
                 }
             }
 
-
             int cur = 0;
             for(int i=0; i<n; i++){
                 if(cur >= len){
