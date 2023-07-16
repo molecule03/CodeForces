@@ -8,7 +8,7 @@ import java.util.*;
 
 public class A {
 
-
+// Upsolved after contest
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
@@ -22,24 +22,24 @@ public class A {
 
             int x = fs.nextInt();
             int y = fs.nextInt();
-            boolean flag = true;
-            for (int i = 0; i < k; i++) {
-                int xi, yi;
-//                cin >> xi >> yi;
-                xi = fs.nextInt();
-                yi = fs.nextInt();
-                int dx = Math.abs(x - xi);
-                int dy = Math.abs(y - yi);
-                if ((dx + dy) % 2 == 0) {
-                    flag = false;
+
+            int par = (x+y)%2;
+
+            boolean flag = false;
+            for(int i=0; i<k; i++){
+                int xi = fs.nextInt();
+                int yi = fs.nextInt();
+
+                if((xi+yi)%2 == par){
+                    flag = true;
                 }
             }
-            if (flag) {
+            if(!flag){
                 out.println("Yes");
-            } else {
+            }
+            else {
                 out.println("No");
             }
-
 
 
 
