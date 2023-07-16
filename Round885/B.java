@@ -1,4 +1,4 @@
-package CodeForces_Contest.Round880;
+package CodeForces_Contest.Round885;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,23 +6,57 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.*;
 
-class C {
-
+public class B {
 
 
     public static void main(String[] args) {
-        FastScanner fs=new FastScanner();
-       PrintWriter out=new PrintWriter(System.out);
-        int T = fs.nextInt();
 
+        FastScanner scanner =new FastScanner();
+        PrintWriter out=new PrintWriter(System.out);
+
+        int T = scanner.nextInt();
         for (int tt=0; tt<T; tt++) {
+            int n = scanner.nextInt();
+            int k = scanner.nextInt();
+
+            int[] arr = new int[n + 1];
+            List<List<Integer>> dis = new ArrayList<>(n + 1);
+            for (int i = 0; i <= n; i++) {
+                dis.add(new ArrayList<>());
+            }
+            int[] nums = new int[n + 1];
+
+            for (int i = 1; i <= n; i++) {
+                nums[i] = scanner.nextInt();
+            }
+
+            for (int i = 1; i <= n; i++) {
+                dis.get(nums[i]).add(i - arr[nums[i]] - 1);
+                arr[nums[i]] = i;
+            }
+
+            int ans = Integer.MAX_VALUE;
+            for (int i = 1; i <= k; i++) {
+                dis.get(i).add(n - arr[i]);
+                dis.get(i).sort((x, y) -> y - x);
+                int val = dis.get(i).get(0) / 2;
+
+                if (dis.get(i).size() >= 2) {
+                    val = Math.max(val, dis.get(i).get(1));
+                }
+
+                ans = Math.min(ans, val);
+            }
+
+            out.println(ans);
 
         }
+
         out.close();
     }
 
 
-    public static boolean isPalindorme(int arr[]){
+    static boolean isPalindorme(int arr[]){
 
         int left = 0;
         int right = arr.length-1;
@@ -58,6 +92,39 @@ class C {
         return list;
     }
 
+    static Set<Integer> printDivisors(int n) {
+        Set<Integer> list = new HashSet<>();
+        // Note that this loop runs till square root
+        for (int i=1; i*i<=n; i++){
+
+            if (n%i==0){
+                // If divisors are equal, print only one
+                list.add(i);
+                list.add(n/i);
+            }
+        }
+        return list;
+    }
+//    static List<Integer> printDivisors(int n) {
+//        List<Integer> list = new ArrayList<>();
+//        // Note that this loop runs till square root
+//        for (int i=1; i<=Math.sqrt(n); i++){
+//
+//            if (n%i==0){
+//                // If divisors are equal, print only one
+//                if (n/i == i) {
+//                    list.add(i);
+//                }
+//                // Otherwise print both
+//                else {
+//                    list.add(i);
+//                    list.add(n/i);
+//                }
+//            }
+//        }
+//        return list;
+//    }
+
     static long gcd(long a, long b){
         if (a == 0)
             return b;
@@ -65,7 +132,7 @@ class C {
         return gcd(b%a, a);
     }
 
-    // method to return LCM of two numbers
+
     static long lcm(long a, long b){
         return (a / gcd(a, b)) * b;
     }
@@ -105,32 +172,54 @@ class C {
         for (int i=invFactorials.length-2; i>=0; i--)
             invFactorials[i]=mul(invFactorials[i+1], i+1);
     }
-
     static long nCk(int n, int k) {
         return mul(factorials[n], mul(invFactorials[k], invFactorials[n-k]));
     }
-
+    static void print(int[] arr){
+        PrintWriter out=new PrintWriter(System.out);
+        out.print(Arrays.toString(arr)+" ");
+    }
+    static void print(long[] arr){
+        PrintWriter out=new PrintWriter(System.out);
+        out.print(Arrays.toString(arr)+" ");
+    }
+    static void println(long[] arr){
+        PrintWriter out=new PrintWriter(System.out);
+        out.println(Arrays.toString(arr)+" ");
+    }
+    static void println(int[] arr){
+        PrintWriter out=new PrintWriter(System.out);
+        out.println(Arrays.toString(arr)+" ");
+    }
     static void reverse(int[] arr){
         ArrayList<Integer> l = new ArrayList<>();
         for(int i : arr) l.add(i);
         Collections.reverse(l);
         for(int i=0; i<arr.length; i++) arr[i] = l.get(i);
-
     }
-
+    static void reverse(long[] arr){
+        ArrayList<Long> l = new ArrayList<>();
+        for(long i : arr) l.add(i);
+        Collections.reverse(l);
+        for(int i=0; i<arr.length; i++) arr[i] = l.get(i);
+    }
     static void swap(int a, int b, int arr[]){
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }
-
-    static void sort(int[] a) {
+    static void sort(int[] arr) {
         ArrayList<Integer> l=new ArrayList<>();
-        for (int i:a) l.add(i);
+        for (int i:arr) l.add(i);
         Collections.sort(l);
-        for (int i=0; i<a.length; i++) a[i]=l.get(i);
+        for (int i=0; i<arr.length; i++) arr[i]=l.get(i);
     }
-
+    static void sort(long[] arr) {
+        ArrayList<Long> l=new ArrayList<>();
+        for (long i:arr) l.add(i);
+        Collections.sort(l);
+        for (int i=0; i<arr.length; i++) arr[i]=l.get(i);
+    }
 
     static class FastScanner {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
