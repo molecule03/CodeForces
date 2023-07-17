@@ -41,10 +41,6 @@ public class A {
                 out.println("No");
             }
 
-
-
-
-
         }
 
         out.close();
