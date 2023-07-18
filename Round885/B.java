@@ -18,38 +18,8 @@ public class B {
         for (int tt=0; tt<T; tt++) {
             int n = scanner.nextInt();
             int k = scanner.nextInt();
-
-            int[] arr = new int[n + 1];
-            List<List<Integer>> dis = new ArrayList<>(n + 1);
-            for (int i = 0; i <= n; i++) {
-                dis.add(new ArrayList<>());
-            }
-            int[] nums = new int[n + 1];
-
-            for (int i = 1; i <= n; i++) {
-                nums[i] = scanner.nextInt();
-            }
-
-            for (int i = 1; i <= n; i++) {
-                dis.get(nums[i]).add(i - arr[nums[i]] - 1);
-                arr[nums[i]] = i;
-            }
-
-            int ans = Integer.MAX_VALUE;
-            for (int i = 1; i <= k; i++) {
-                dis.get(i).add(n - arr[i]);
-                dis.get(i).sort((x, y) -> y - x);
-                int val = dis.get(i).get(0) / 2;
-
-                if (dis.get(i).size() >= 2) {
-                    val = Math.max(val, dis.get(i).get(1));
-                }
-
-                ans = Math.min(ans, val);
-            }
-
-            out.println(ans);
-
+//
+            int arr[] = scanner.readArray(n);
         }
 
         out.close();
@@ -131,6 +101,7 @@ public class B {
 
         return gcd(b%a, a);
     }
+
 
 
     static long lcm(long a, long b){
