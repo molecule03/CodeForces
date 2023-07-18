@@ -22,16 +22,7 @@ public class A {
             else{
                 out.println(1+" "+n/2);
             }
-//            out.println("");
-//            System.out.println(primeFactors(n));
-//            List<Long> list = primeFactors(n);
-////            out.println();
-//            List<Long> ans = getInt(list, n);
-//
-//            for(long i : ans){
-//                out.print(i+" ");
-//            }
-//            out.println("");
+
         }
         out.close();
     }
