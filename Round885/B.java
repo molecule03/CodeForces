@@ -18,8 +18,61 @@ public class B {
         for (int tt=0; tt<T; tt++) {
             int n = scanner.nextInt();
             int k = scanner.nextInt();
-//
             int arr[] = scanner.readArray(n);
+
+            ArrayList<Integer> a[] = new ArrayList[k];
+            for(int i=0; i<k; i++){
+                a[i] = new ArrayList<>();
+            }
+            Map<Integer, Integer> map = new HashMap<>();
+            for(int i=0; i<n; i++){
+                if(!map.containsKey(arr[i]-1)){
+                    map.put(arr[i]-1, i);
+                    a[arr[i]-1].add(i);
+                }
+                else{
+                    int last = map.get(arr[i]-1);
+                    a[arr[i]-1].add(i-last-1);
+                    map.put(arr[i]-1, i);
+                }
+            }
+//            out.print(map+" ");
+            for(int i : map.keySet()){
+                int last = map.get(i);
+                a[i].add(n-last-1);
+            }
+
+
+
+            int ans = Integer.MAX_VALUE;
+            for(ArrayList<Integer> ar : a){
+                int size = ar.size();
+                if(size == 0) continue;
+               Collections.sort(ar);
+//                out.print(ar+" ");
+
+                int lt = 0;
+                int slt = 0;
+                if(size-1 >= 0) lt = ar.get(size-1);
+                if(size-2 >= 0)slt = ar.get(size-2);
+                int cur = Math.max(lt/2, slt);
+//                out.print(cur+" ");
+                ans = Math.min(cur, ans);
+            }
+//            for(List<Integer> l : list){
+//                Collections.sort(l);
+//                out.print(l+" ");
+//                int size = l.size();
+//                int lt = 0;
+//                int slt = 0;
+//                if(size == 0)continue;
+//                if(size-1 >= 0)lt = l.get(size-1);
+//                if(size-2 >= 0)slt = l.get(size-2);
+//                int cur = Math.max(lt/2, slt);
+//                ans = Math.max(cur, ans);
+//            }
+
+            out.println(ans);
         }
 
         out.close();
