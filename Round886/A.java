@@ -28,7 +28,6 @@ public class A {
                 out.println("NO");
             }
         }
-
         out.close();
     }
 
