@@ -33,11 +33,11 @@ public class F {
                 }
             }
 
-            long cur = 0;
+            long max = 0;
             for(long v : comman.values()) {
-                cur = Math.max(cur, v);
+                max = Math.max(max, v);
             }
-            out.println(cur);
+            out.println(max);
 
 
         }
