@@ -16,68 +16,15 @@ public class B {
         PrintWriter out=new PrintWriter(System.out);
 
 
-        precomputeFibonacci();
+
 
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
 
-            int n = fs.nextInt();
-            int k = fs.nextInt();
-
-            if (k >= 901) {
-                out.println(0);
-                continue;
-            }
-
-            long[] val = facts[k];
-            int result = 0;
-
-            for (int i = 0; i <= n; ++i) {
-                long temp = (n - val[0] * i);
-                if (temp % val[1] == 0 && (temp / val[1]) >= i) {
-                        ++result;
-                }
-            }
-            out.println(result);
         }
         out.close();
     }
 
-    public static void precomputeFibonacci() {
-
-        facts[1] = new long[]{1, 0};
-        facts[2] = new long[]{0, 1};
-
-        for (int i = 3; i < 901; ++i) {
-            long[] current = new long[2];
-            current[0] = facts[i - 2][0] + facts[i - 1][0];
-            current[1] = facts[i - 2][1] + facts[i - 1][1];
-            facts[i] = current;
-        }
-    }
-
-    public static int countFibonacciLikeSequences(int n, int k) {
-        if (k <= 2) {
-            return (k == 2 && n == 0) ? 1 : 0;
-        }
-
-        // Initialize the dynamic programming table to store the number of sequences for each k-th element (n)
-        int[] dp = new int[n + 1];
-
-        // Base cases
-        dp[0] = 1; // Only one sequence [0, 0] is possible with k = 2
-        dp[n] = 1; // [n, n] is a valid sequence if n is non-negative
-
-        int mod = 1_000_000_007; // Modulo to handle large numbers
-
-        // Build the sequences from k-1 to 2
-        for (int i = k - 1; i >= 2; i--) {
-            dp[i] = (dp[i + 1] + dp[i + n]) % mod;
-        }
-
-        // The number of sequences with k-th element as n is the value at index 2 of the DP table
-        return dp[2];
-    }
 
 
     static boolean isPalindorme(int arr[]){
@@ -116,7 +63,7 @@ public class B {
         return list;
     }
 
-    static Set<Integer> printDivisors(int n) {
+    static Set<Integer> printDivisorsInSet(int n) {
         Set<Integer> list = new HashSet<>();
         // Note that this loop runs till square root
         for (int i=1; i*i<=n; i++){
@@ -129,25 +76,25 @@ public class B {
         }
         return list;
     }
-//    static List<Integer> printDivisors(int n) {
-//        List<Integer> list = new ArrayList<>();
-//        // Note that this loop runs till square root
-//        for (int i=1; i<=Math.sqrt(n); i++){
-//
-//            if (n%i==0){
-//                // If divisors are equal, print only one
-//                if (n/i == i) {
-//                    list.add(i);
-//                }
-//                // Otherwise print both
-//                else {
-//                    list.add(i);
-//                    list.add(n/i);
-//                }
-//            }
-//        }
-//        return list;
-//    }
+    static List<Integer> printDivisorsInList(int n) {
+        List<Integer> list = new ArrayList<>();
+        // Note that this loop runs till square root
+        for (int i=1; i<=Math.sqrt(n); i++){
+
+            if (n%i==0){
+                // If divisors are equal, print only one
+                if (n/i == i) {
+                    list.add(i);
+                }
+                // Otherwise print both
+                else {
+                    list.add(i);
+                    list.add(n/i);
+                }
+            }
+        }
+        return list;
+    }
 
     static long gcd(long a, long b){
         if (a == 0)
