@@ -8,8 +8,6 @@ import java.util.*;
 
 public class B {
 
-
-    static long[][] facts = new long[901][2];
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
@@ -20,6 +18,7 @@ public class B {
 
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
+
 
         }
         out.close();
