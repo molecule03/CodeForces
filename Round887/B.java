@@ -8,20 +8,53 @@ import java.util.*;
 
 public class B {
 
+//    Upsolved after contest
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
         PrintWriter out=new PrintWriter(System.out);
 
-
-
-
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
+
+            int n = fs.nextInt();
+            int k = fs.nextInt();
+
+            int ans = 0;
+            if(k > 31){
+                out.println(0);
+                continue;
+            }
+            for(int i=n; i>=1; i--){
+
+                if(canMake(i, n, k)){
+                    ans++;
+                }
+            }
+
+            out.println(ans);
 
 
         }
         out.close();
+    }
+
+    static boolean canMake(int x, int n, int k){
+
+        int y = n-x;
+        int count = 2;
+
+        while(x>= y){
+            count++;
+            n = x;
+            x = y;
+            y = n-x;
+        }
+
+        if(count >= k) return true;
+
+        return false;
+
     }
 
 
