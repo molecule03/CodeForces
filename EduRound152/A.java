@@ -20,7 +20,6 @@ public class A {
             int b = fs.nextInt();
             int c = fs.nextInt();
             int h = fs.nextInt();
-
             int f = c+h;
 
             if(f >= b){
