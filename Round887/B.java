@@ -34,7 +34,6 @@ public class B {
 
             out.println(ans);
 
-
         }
         out.close();
     }
