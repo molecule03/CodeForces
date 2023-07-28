@@ -12,6 +12,7 @@ public class C {
         FastScanner fs=new FastScanner();
         PrintWriter out=new PrintWriter(System.out);
 
+
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
 
