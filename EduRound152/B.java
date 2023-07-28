@@ -25,7 +25,6 @@ public class B {
             int h[] = new int[n];
             for(int i=0; i<n; i++){
                 h[i] = fs.nextInt();
-//                pq.add(new int[]{h[i], i});
             }
 
             for(int i=0; i<n; i++){
@@ -37,10 +36,6 @@ public class B {
                 }
                 pq.add(new int[]{h[i], i});
             }
-
-
-
-
 
             while(!pq.isEmpty()){
                 int a[] = pq.poll();
