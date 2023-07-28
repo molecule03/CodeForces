@@ -38,7 +38,9 @@ public class C {
             diff[n] = count;
 //            out.println(Arrays.toString(diff));
 
-            Set<String> set = new HashSet<>();
+//            Set<String> check = new HashSet<>();
+//            Set<String> set = new HashSet<>();
+            Map<String, Integer> map = new HashMap<>();
             for(int[] o : op){
                 int l = o[0]-1;
                 int r = o[1]-1;
@@ -46,6 +48,9 @@ public class C {
                 int ones = diff[r+1]-diff[l];
                 int zeros = (r-l+1)-ones;
 
+//                if(check.contains(l+""+r)){
+//                    continue;
+//                }
 //                out.print(l+" "+r+" "+"zeros="+zeros+" ones="+ones+" ");
 
                 for(int i=0; i<l; i++){
@@ -68,12 +73,15 @@ public class C {
                     sb.append(ss.charAt(i));
                 }
 //                out.println("           "+sb.toString());
-                if(!set.contains(sb.toString()))
-                set.add(sb.toString());
+//                if(!set.contains(sb.toString()))
+//                set.add(sb.toString());
+                map.put(sb.toString(), 1);
+//                check.add(l+""+r);
             }
+//            out.println(check);
 //            out.println(set);
 
-            out.println(set.size());
+            out.println(map.size());
         }
 
         out.close();
