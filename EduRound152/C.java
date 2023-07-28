@@ -52,7 +52,6 @@ public class C {
 //                    continue;
 //                }
 //                out.print(l+" "+r+" "+"zeros="+zeros+" ones="+ones+" ");
-
                 for(int i=0; i<l; i++){
                     sb.append(ss.charAt(i));
                 }
