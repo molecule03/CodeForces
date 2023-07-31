@@ -25,8 +25,7 @@ public class G
             Map<Long, Long> west = new HashMap<>();
             long arr[][] = new long[n][2];
             for(int i=0; i<n; i++){
-                long x = fs.nextLong();
-                long y = fs.nextLong();
+                long x = fs.nextLong(), y = fs.nextLong();
                 north.put(x, north.getOrDefault(x, 0l)+1);
                 south.put(y, south.getOrDefault(y, 0l)+1);
                 east.put(x+y, east.getOrDefault(x+y, 0l)+1);
