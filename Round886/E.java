@@ -6,12 +6,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.*;
 
+// Upsolved
 public class E {
 
 
-    static long[] arr;
-    static long n;
+
+   static int n;
     static long c;
+    static long arr[];
     public static void main(String[] args) {
 
         FastScanner fs=new FastScanner();
@@ -20,39 +22,64 @@ public class E {
 
         int T = fs.nextInt();
         for (int tt=0; tt<T; tt++) {
-            n = fs.nextLong();
+
+            n = fs.nextInt();
             c = fs.nextLong();
 
-            arr = new long[(int)n];
-            for (int i = 0; i < n; i++) {
+            arr = new long[n];
+            for(int i=0; i<n; i++){
                 arr[i] = fs.nextLong();
             }
-            Arrays.sort(arr);
-            long l = 0, r = (long) 1e9;
-            while (r - l > 1) {
-                long mid = (l + r) / 2;
-                if (check(mid)) {
-                    l = mid;
-                } else {
+
+            long l = 0;
+            long r = Integer.MAX_VALUE;
+
+            boolean flag = false;
+            while(l < r){
+                long mid = l+(r-l)/2;
+
+                if(isValid(mid)){
+                    if(isSame(mid)){
+                        out.println(mid);
+                        flag = true;
+                        break;
+                    }
+                    l = mid+1;
+                }
+                else {
                     r = mid;
                 }
             }
+
+            if(!flag)
             out.println(l);
 
         }
 
         out.close();
     }
-    static boolean check(long mid) {
-        long sum = 0;
-        for (int i = 0; i < n; i++) {
-            sum += (arr[i] + 2 * mid) * (arr[i] + 2 * mid);
-            if (sum > c) {
-                return false;
-            }
+
+    private static boolean isValid(long i){
+
+        long area = 0;
+        for(long a : arr){
+            a += 2*i;
+            area += a*a;
+            if(area > c) return false;
         }
-        return sum <= c;
+        return area <= c;
     }
+    private static boolean isSame(long i){
+
+        long area = 0;
+        for(long a : arr){
+            a += 2*i;
+            area += a*a;
+            if(area > c) return false;
+        }
+        return area == c;
+    }
+
 
 
     static boolean isPalindorme(int arr[]){
