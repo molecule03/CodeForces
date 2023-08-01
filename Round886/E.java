@@ -14,6 +14,7 @@ public class E {
     static long arr[];
     public static void main(String[] args) {
 
+
         FastScanner fs=new FastScanner();
         PrintWriter out=new PrintWriter(System.out);
 
