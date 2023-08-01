@@ -9,8 +9,6 @@ import java.util.*;
 // Upsolved
 public class E {
 
-
-
    static int n;
     static long c;
     static long arr[];
